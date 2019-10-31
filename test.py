@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
     df.to_csv('Combined.csv')
     # df.info()
-    print(df.head())
+    df.head()
 
     deep_df = df.copy(deep= True)
 
@@ -112,7 +112,7 @@ if __name__ == "__main__":
     #Train
     history = model.fit(x_train, y_train, epochs=30, verbose = 2, batch_size=1, validation_split=0.1)
     # callbacks=[EarlyStopping(monitor='val_loss', min_delta=0.00001)]
-    
+    print
     #LSTM predection on test dataset
     pred = model.predict(x_test)
     np.around(pred) == y_test
