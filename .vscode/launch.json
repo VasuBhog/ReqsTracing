@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Metrics",
+            "request": "launch",
+            "mainClass": "evaluation.basic.Metrics"
+        }
+    ]
+}

@@ -69,8 +69,6 @@ if __name__ == "__main__":
     # df.info()
     df.head()
 
-    deep_df = df.copy(deep= True)
-
     y = df[['NFR1', 'NFR2', 'NFR3']]
     # vectorizer = CountVectorizer()
     # text = df['Message']
@@ -88,10 +86,19 @@ if __name__ == "__main__":
     x = pad_sequences(sequences, maxlen= max_length)
     print(x)
 
+    #TFIDF
+    # t = Tokenizer(lower=True)                                      
+    # t.fit_on_texts(words)
+    # encoded_docs = t.texts_to_matrix(words, mode='tfidf')
+    # print(encoded_docs)
+    # vocab_size = len(t.word_index)+1
+    # print("Vocab Size: " + str(vocab_size))
+    # x = encoded_docs
+
     #Machine Learning Model - Sklearn
 
     #Test/Train Splitting
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.4, random_state = 40) 
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state = 40) 
     print("\nLength of XTest: " + str(len(x_test))) #Test is 40% total
 
     # from sklearn.preprocessing import StandardScaler
@@ -104,15 +111,15 @@ if __name__ == "__main__":
     model = Sequential()
     model.add(Embedding(max_words, 50, input_length=x.shape[1])) #input
     model.add(LSTM(40, activation="sigmoid", dropout=0.1, recurrent_dropout=0.1))                  #hidden
-    model.add(Dense(20, activation='sigmoid'))   
+    model.add(Dense(20, activation='relu'))   
     model.add(Dense(3, activation='softmax'))                    #output
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     print(model.summary())
 
     #Train
-    history = model.fit(x_train, y_train, epochs=30, verbose = 2, batch_size=1, validation_split=0.1)
+    history = model.fit(x_train, y_train, epochs=50, verbose = 2, batch_size=1, validation_split=0.1)
     # callbacks=[EarlyStopping(monitor='val_loss', min_delta=0.00001)]
-    print
+
     #LSTM predection on test dataset
     pred = model.predict(x_test)
     np.around(pred) == y_test
@@ -120,31 +127,20 @@ if __name__ == "__main__":
     print('predicted:', np.around(pred[1]))
     print('true:', y_test[1])
 
+ #Evaluate the Model
+    # from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+    # print("\nConfusion Matrix: ")
+    # print(confusion_matrix(y_test.argmax(axis=1),pred.argmax(axis=1)))
+    # print(classification_report(y_test.argmax(axis=1),pred.argmax(axis=1)))
+    # print(accuracy_score(y_test.argmax(axis=1),pred.argmax(axis=1)))
 
-
-
-    #SVC MODEL 
-    
-    """ #new model
-    from sklearn.preprocessing import StandardScaler
-    from sklearn.svm import SVC
-
-    sc_x = StandardScaler()
-    X_train = sc_x.fit_transform(x_train)
-    X_test = sc_x.fit_transform(x_test)
-    print(x.shape)
-    print(y.shape)
-
-    #Model
-    support_vector_classifier = SVC(kernel='rbf')
-    support_vector_classifier.fit(X_train,y_train)
-    y_pred_svc = support_vector_classifier.predict(X_test)
-
-    from sklearn.metrics import confusion_matrix
-    cm_support_vector_classifier = confusion_matrix(y_test,y_pred_svc)
-    numerator = cm_support_vector_classifier[0][0] + cm_support_vector_classifier[1][1]
-    denominator = sum(cm_support_vector_classifier[0]) + sum(cm_support_vector_classifier[1])
-    acc_svc = (numerator/denominator) * 100
-    print("Accuracy : ",round(acc_svc,2),"%") """
-
+    #Tests entire model
+    y_pred = model.predict(x)
+    y_pred = np.around(y_pred)
+    y_pred = y_pred.astype(int)
+    # print(y_pred)
+    # print(len(y_pred))
+    with open('result.txt','w') as result:
+        for x in range(80):
+            result.write("FR{},{},{},{}\n".format(x+1,int(y_pred[x][0]),y_pred[x][1],y_pred[x][2]))
 
