@@ -11,6 +11,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Activation, LSTM, Embedding
 from keras.callbacks import EarlyStopping
 
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 
@@ -36,6 +37,10 @@ def txtToCsv(file,delimiter,csvFile):
                 writer.writerow(('Title','NFR1','NFR2','NFR3'))
                 writer.writerows(lines)
 
+
+
+# inputdf = pd.read_fwf('input.txt', sep='', header=None)
+# data.columns = ["a","b","c"]
 
 if __name__ == "__main__":
     #set variables
@@ -74,21 +79,35 @@ if __name__ == "__main__":
     max_length = max([len(s.split())for s in words])
 
     #Tokenize words
-    t = Tokenizer(lower=True)
-    t.fit_on_texts(words)
+    # t = Tokenizer(lower=True)
+    # t.fit_on_texts(words)
+    # vocab_size = len(t.word_index)+1
+    # print(vocab_size)
+    # sequences = t.texts_to_sequences(words)
+    # x = pad_sequences(sequences, maxlen= max_length)
+    # print(x)
+
+    #TFIDF instead of word bags
+    t = TfidfVectorizer                               
+    encoded_docs = t.fit(words)
+    tf_x = encoded_docs.transform(X).toarray()
+    print(tf_x.shape)
+    # encoded_docs = t.texts_to_matrix(words, mode='tfidf')
+    print(encoded_docs)
     vocab_size = len(t.word_index)+1
-    print(vocab_size)
-    sequences = t.texts_to_sequences(words)
-    x = pad_sequences(sequences, maxlen= max_length)
-    print(x)
-    new_x = x[:,:,None]
-    
+    print("Vocab Size: " + str(vocab_size))
+    x = encoded_docs
 
     #Machine Learning Model - Sklearn
 
     #Test/Train Splitting
-    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state=900) 
+    x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2, random_state = 40) 
     print("\nLength of XTest: " + str(len(x_test))) #Test is 40% total
+
+    # from sklearn.preprocessing import StandardScaler
+    # sc = StandardScaler()
+    # x_train = sc.fit_transform(x_train)
+    # x_test = sc.transform(x_test)
 
     max_words = vocab_size
     maxlen = max_length
@@ -98,32 +117,32 @@ if __name__ == "__main__":
     model.add(Dense(20, activation='relu'))   
     model.add(Dense(3, activation='softmax'))                    #output
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-    #loss='cosine_proximity' - gives good recall
     print(model.summary())
 
     #Train
-    history = model.fit(x_train, y_train, epochs=50, verbose = 2, batch_size=1, validation_split=0.2)
-    #callbacks=[EarlyStopping(monitor='accuracy', min_delta=0.1)]
+    history = model.fit(x_train, y_train, epochs=50, verbose = 2, batch_size=1, validation_split=0.1)
+    # callbacks=[EarlyStopping(monitor='val_loss', min_delta=0.00001)]
 
     #LSTM predection on test dataset
     pred = model.predict(x_test)
+    np.around(pred) == y_test
     y_test = np.array(y_test)
     print('predicted:', np.around(pred[1]))
     print('true:', y_test[1])
 
-#  Evaluate the Model
+ #Evaluate the Model
     # from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
     # print("\nConfusion Matrix: ")
     # print(confusion_matrix(y_test.argmax(axis=1),pred.argmax(axis=1)))
     # print(classification_report(y_test.argmax(axis=1),pred.argmax(axis=1)))
     # print(accuracy_score(y_test.argmax(axis=1),pred.argmax(axis=1)))
 
-    #Tests entire
+    #Tests entire model
     y_pred = model.predict(x)
-    # print(np.around(pred) == y_test)
     y_pred = np.around(y_pred)
     y_pred = y_pred.astype(int)
-
+    # print(y_pred)
+    # print(len(y_pred))
     with open('result.txt','w') as result:
         for x in range(80):
             result.write("FR{},{},{},{}\n".format(x+1,int(y_pred[x][0]),y_pred[x][1],y_pred[x][2]))
