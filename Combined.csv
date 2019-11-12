@@ -1,81 +1,101 @@
-Title,Message,NFR1,NFR2,NFR3
-FR1, The user shall search for the preferred repair facility using vehicle location and radius in miles.,0,1,0
-FR2, The vehicle location shall include street address city state and zip-code.,0,0,0
-FR3, The search radius shall be between 1 and 30 miles.,0,1,0
-FR4, The system shall locate the preferred repair facility with the highest ratings for the input criteria.,0,1,0
-FR5, The adjuster shall enter the preferred repair facility on the estimate assignment.,0,1,0
-FR6, The adjuster shall be able to override the preferred repair facility on the estimate assignment.,0,1,0
-FR7, The preferred repair facility shall be returned to the user.,0,0,0
-FR8, The system shall return a list of repair facilities within the radius if the preferred repair facility cannot be determined.,0,0,0
-FR9, The estimator shall search for available recycled parts using damaged vehicle parts information.,1,1,0
-FR10, The estimator shall search for available recycled parts using a list of preferred parts suppliers.,1,1,0
-FR11, The system shall search for available recycled parts for the supplied vehicle parts and suppliers.,1,1,0
-FR12, The estimator shall search by zipcode with a radius of 30 miles if no parts are found for the preferred parts suppliers.,0,1,0
-FR13, The system shall retain the available recycled parts and suppliers returned from the search.,1,1,0
-FR14, The available recycled parts information and their suppliers shall be returned to the user.,1,1,0
-FR15, The estimator shall apply selected recycled parts to the collision estimate.,1,1,0
-FR16, The estimator shall not apply recycled parts to the collision estimate if no available parts are returned.,1,0,0
-FR17, The adjuster shall review the collision estimate.,0,1,0
-FR18, The adjuster shall request a recycled parts audit of the collision estimate.,1,0,0
-FR19, The audit report shall include the total number of recycled parts used in the estimate.,1,0,1
-FR20, The audit report shall include the number of available recycled parts from the original search results.,1,0,1
-FR21, The audit report shall include the percentage of available recycled parts used in the estimate.,1,0,1
-FR22, The audit report shall include the total score of the audit which sums the individual line items.,0,0,0
-FR23, The audit report shall be displayed to the user.,0,1,0
-FR24, The audit report shall be available to other adjusters at later points in time.,0,0,1
-FR25, The user shall select to view the preferred repair facility ratings.,0,1,0
-FR26, The system will display a blank set of ratings if there are not ratings yet defined.,0,0,0
-FR27, The user shall enter new ratings based on the audit report.,0,0,1
-FR28, The ratings shall be from a scale of 1-10.,0,0,0
-FR29, The user shall select to save the preferred repair facility ratings.,0,0,0
-FR30, The preferred repair facility ratings shall be saved by the system.,0,0,0
-FR31, The vehicle data shall include vehicle year make and model.,0,0,0
-FR32, The system shall resolve the zipcode for the street address city and state if zipcode is unknown.,0,1,0
-FR33, The recycled parts search results provided to the estimator shall be retrieved by the system.,1,1,0
-FR34, The system shall generate an audit report based on the available recycled parts and the collision estimate.,1,1,1
-FR35, The current repair facility ratings shall be displayed to the user.,0,1,0
-FR36, The ratings shall include categories for attempted use of recycled parts and actual use of recycled parts.,1,0,0
-FR37, The system shall record repair facility visiting schedule entries.,0,0,0
-FR38, The system will notify users of their repair facility visiting schedules.,0,0,0
-FR39, The system shall have the ability to send repair facility visiting schedule reminders to users.,0,0,0
-FR40, The system shall send the repair facility contact information to schedule creaters.,0,0,0
-FR41, The system will record repair facility visiting schedule acknowledgments.,0,0,0
-FR42, The system shall store new conference rooms.,0,0,0
-FR43, The system shall update existing conference rooms.,0,0,0
-FR44, The system will be able to delete conference rooms.,0,0,0
-FR45, The system shall be able to store new recycled parts.,1,0,0
-FR46, The system will update existing recycled parts.,1,0,0
-FR47, The system shall be able to delete recycled parts.,1,0,0
-FR48, Each time a conference room is reserved the conference room schedule shall be updated to reflect the time and date of the reservation.,0,0,0
-FR49, The system shall display a map of the repair facility building showing conference room locations.,0,0,0
-FR50, The system shall record updated repair facility visiting schedule agendas.,0,0,0
-FR51, The system shall send a repair facility visiting schedule confirmation to the schedule creaters.,0,0,0
-FR52, The system shall record the transportation status of parts reserved.,1,0,0
-FR53, The system shall record different schedule types.,0,0,0
-FR54, The system shall record all the recycled parts that has been reserved.,0,0,0
-FR55, The system shall notify repair facility of recycled parts transport requests.,0,0,0
-FR56, The system will allow priviledged users to view repair facility visiting schedules in multiple reporting views.,0,0,1
-FR57, The system shall be able to send repair facility visiting schedule notifications via different kinds of end-user specified methods.,0,0,0
-FR58, The system shall have a customizable Look and Feel.,0,1,0
-FR59, The system shall have an intuitive user interface.,0,1,0
-FR60, The system will display an available status for unreserved conference rooms.,0,0,0
-FR61, The system shall have a interface that allows for the viewing of the graph and the data table.,0,1,0
-FR62, The system shall display recycled parts in a vertical table by name.,1,1,0
-FR63, The system shall display the repair facilities in a vertical table by name.,0,1,0
-FR64, The system shall display the preferred repair facility in a graph.,0,1,0
-FR65, The system shall display recycled parts and the preferred repair facility.,1,1,0
-FR66, The display shall have two regions: left of the display is graphical right of the display is a data table.,0,0,0
-FR67, The data displayed in both the nodes within the graph and the rows in the table are Summary data.,0,0,0
-FR68, The system shall color code the repair facilities according to their distance variance from current location.,0,1,0
-FR69, The system shall allow modification of the display.,0,1,0
-FR70, The system shall filter data by ratings.,0,1,0
-FR71, The system shall offer the ability to pause and resume the refresh of data.,0,0,0
-FR72, The system shall provide a history report of changes made to the ratings.,0,1,0
-FR73, The system shall allow the user to save the preferred repair facility search results.,0,1,0
-FR74, The system shall display the recycled parts information and suppliers research results.,0,1,0
-FR75, The system shall allow the adjuster to save the audit report.,0,1,1
-FR76, The system shall allow the estimator to save the collision estimate.,0,1,0
-FR77, The system shall provide the search history to users.,0,1,0
-FR78, The system shall notify the adjuster when a estimator responds to a collision estimate request.,0,1,0
-FR79, The user shall be able to retrieve a map showing repair facility locations for a specified area.,0,1,0
-FR80, The estimator shall be notified of new estimate request after automatic synchronization with system.,0,1,0
+Title,Message,NFR1,NFR2,NFR3,NFR4
+FR1, The user shall search for the preferred repair facility using vehicle location and radius in miles.,0,1,0,0
+FR2, The vehicle location shall include street address  city  state  and zip-code.,0,0,0,0
+FR3, The search radius shall be between 1 and 30 miles.,0,1,0,0
+FR4, The system shall locate the preferred repair facility with the highest ratings for the input criteria.,0,1,0,0
+FR5, The adjuster shall enter the preferred repair facility on the estimate assignment.,0,1,0,0
+FR6, The adjuster shall be able to override the preferred repair facility on the estimate assignment.,0,1,0,0
+FR7, The preferred repair facility shall be returned to the user.,0,0,0,0
+FR8, The system shall return a list of repair facilities within the radius if the preferred repair facility cannot be determined.,0,0,0,0
+FR9, The estimator shall search for available recycled parts using damaged vehicle parts information.,1,1,0,1
+FR10, The estimator shall search for available recycled parts using a list of preferred parts suppliers.,1,1,0,1
+FR11, The system shall search for available recycled parts for the supplied vehicle parts and suppliers.,1,1,0,0
+FR12, The estimator shall search by zipcode with a radius of 30 miles if no parts are found for the preferred parts suppliers.,0,1,0,1
+FR13, The system shall retain the available recycled parts and suppliers returned from the search.,1,1,0,0
+FR14, The available recycled parts information and their suppliers shall be returned to the user.,1,1,0,1
+FR15, The estimator shall apply selected recycled parts to the collision estimate.,1,1,0,0
+FR16, The estimator shall not apply recycled parts to the collision estimate if no available parts are returned.,1,0,0,0
+FR17, The adjuster shall review the collision estimate.,0,1,0,0
+FR18, The adjuster shall request a recycled parts audit of the collision estimate.,1,0,0,0
+FR19, The audit report shall include the total number of recycled parts used in the estimate.,1,0,1,0
+FR20, The audit report shall include the number of available recycled parts from the original search results.,1,0,1,0
+FR21, The audit report shall include the percentage of available recycled parts used in the estimate.,1,0,1,0
+FR22, The audit report shall include the total score of the audit which sums the individual line items.,0,0,0,0
+FR23, The audit report shall be displayed to the user.,0,1,0,0
+FR24, The audit report shall be available to other adjusters at later points in time.,0,0,1,0
+FR25, The user shall select to view the preferred repair facility ratings.,0,1,0,0
+FR26, The system will display a blank set of ratings if there are not ratings yet defined.,0,0,0,0
+FR27, The user shall enter new ratings based on the audit report.,0,0,1,0
+FR28, The ratings shall be from a scale of 1-10.,0,0,0,0
+FR29, The user shall select to save the preferred repair facility ratings.,0,0,0,0
+FR30, The preferred repair facility ratings shall be saved by the system.,0,0,0,0
+FR31, The vehicle data shall include vehicle year  make  and model.,0,0,0,0
+FR32, The system shall resolve the zipcode for the street address  city  and state if zipcode is unknown.,0,1,0,1
+FR33, The recycled parts search results provided to the estimator shall be retrieved by the system.,1,1,0,0
+FR34, The system shall generate an audit report based on the available recycled parts and the collision estimate.,1,1,1,0
+FR35, The current repair facility ratings shall be displayed to the user.,0,1,0,0
+FR36, The ratings shall include categories for attempted use of recycled parts and actual use of recycled parts.,1,0,0,0
+FR37, The system shall record repair facility visiting schedule entries.,0,0,0,0
+FR38, The system will notify users of their repair facility visiting schedules.,0,0,0,0
+FR39, The system shall have the ability to send repair facility visiting schedule reminders to users.,0,0,0,0
+FR40, The system shall send the repair facility contact information to schedule creaters.,0,0,0,0
+FR41, The system will record repair facility visiting schedule acknowledgments.,0,0,0,0
+FR42, The system shall store new conference rooms.,0,0,0,0
+FR43, The system shall update existing conference rooms.,0,0,0,0
+FR44, The system will be able to delete conference rooms.,0,0,0,0
+FR45, The system shall be able to store new recycled parts.,1,0,0,0
+FR46, The system will update existing recycled parts.,1,0,0,0
+FR47, The system shall be able to delete recycled parts.,1,0,0,0
+FR48, Each time a conference room is reserved  the conference room schedule shall be updated to reflect the time and date of the reservation.,0,0,0,0
+FR49, The system shall display a map of the repair facility building showing conference room locations.,0,0,0,0
+FR50, The system shall record updated repair facility visiting schedule agendas.,0,0,0,0
+FR51, The system shall send a repair facility visiting schedule confirmation to the schedule creaters.,0,0,0,0
+FR52, The system shall record the transportation status of parts reserved.,1,0,0,0
+FR53, The system shall record different schedule types.,0,0,0,0
+FR54, The system shall record all the recycled parts that has been reserved.,0,0,0,0
+FR55, The system shall notify repair facility of recycled parts transport requests.,0,0,0,0
+FR56, The system will allow priviledged users to view repair facility visiting schedules in multiple reporting views.,0,0,1,0
+FR57, The system shall be able to send repair facility visiting schedule notifications via different kinds of end-user specified methods.,0,0,0,0
+FR58, The system shall have a customizable Look and Feel.,0,1,0,0
+FR59, The system shall have an intuitive user interface.,0,1,0,0
+FR60, The system will display an available status for unreserved conference rooms.,0,0,0,0
+FR61, The system shall have a interface that allows for the viewing of the graph and the data table.,0,1,0,0
+FR62, The system shall display recycled parts in a vertical table by name.,1,1,0,0
+FR63, The system shall display the repair facilities in a vertical table by name.,0,1,0,0
+FR64, The system shall display the preferred repair facility in a graph.,0,1,0,0
+FR65, The system shall display recycled parts and the preferred repair facility.,1,1,0,0
+FR66, The display shall have two regions:  left of the display is graphical  right of the display is a data table.,0,0,0,0
+FR67, The data displayed in both the nodes within the graph and the rows in the table are Summary data.,0,0,0,0
+FR68, The system shall color code the repair facilities according to their distance variance from current location.,0,1,0,0
+FR69, The system shall allow modification of the display.,0,1,0,0
+FR70, The system shall filter data by ratings.,0,1,0,0
+FR71, The system shall offer the ability to pause and resume the refresh of data.,0,0,0,0
+FR72, The system shall provide a history report of changes made to the ratings.,0,1,0,0
+FR73, The system shall allow the user to save the preferred repair facility search results.,0,1,0,0
+FR74, The system shall display the recycled parts information and suppliers research results.,0,1,0,0
+FR75, The system shall allow the adjuster to save the audit report.,0,1,1,0
+FR76, The system shall allow the estimator to save the collision estimate.,0,1,0,0
+FR77, The system shall provide the search history to users.,0,1,0,0
+FR78,  The system shall notify the adjuster when a estimator responds to a collision estimate request.,0,1,0,0
+FR79, The user shall be able to retrieve a map showing repair facility locations for a specified area.,0,1,0,0
+FR80, The estimator shall be notified of new estimate request after automatic synchronization with system.,0,1,0,0
+FR81, The system shall notify the new recycled parts audit report.,0,0,0,0
+FR82, The estimator shall update or create new collision estimate.,0,0,0,1
+FR83, The adjuster shall update ratings based on the audit report.,0,0,1,1
+FR84, The system shall display the most frequent search result of recycled parts.,1,1,0,1
+FR85, The system shall display the most frequent search result for repair facilities.,0,1,0,0
+FR86, The user shall be able to get driving directions to a selected repair facility.,0,1,0,0
+FR87, The system shall be easily used by adjusters and collision estimators with no training.,0,0,0,0
+FR88, The system shall provide interface for a user to easily search repair facilities.,0,1,0,0
+FR89, The system shall use symbols and words that are naturally understandable by users.,0,1,0,0
+FR90, The system shall produce an audit report in an acceptable time.,0,1,0,0
+FR91, The system shall allow the user to upload the collision estimate locally.,0,1,0,0
+FR92, The system shall allow the user to upload the audit report locally.,0,1,0,0
+FR93, The user shall be able to modify the recycled parts information.,1,1,0,0
+FR94, The user shall be able to modify the supplier information.,0,1,0,0
+FR95, The user shall be able to add new recycled part information and its supplier.,1,1,0,0
+FR96, The user shall be able to report error messages when the user finds errors in the recycled part information.,1,1,0,0
+FR97, The user shall be able to report error messages when the user finds errors in the audit report.,0,1,0,0
+FR98, The user shall be able to cancel the visiting schedule to the repair facility.,0,1,0,0
+FR99, The user shall be able to modify the visiting schedule to the repair facility.,0,1,0,0
+FR100, The system shall be able to prompt an alert message when the user performs a dangerous operation.,0,1,0,0

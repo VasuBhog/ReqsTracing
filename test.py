@@ -23,7 +23,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 def txtToCsv(file,delimiter,csvFile):
     with open(file, 'r') as in_file:
         stripped = (line.strip() for line in in_file)
-        if file == 'input.txt':
+        if file == 'input files/3.requirements-4nfr-100fr_Nov5.txt':
             lines = (line.split(delimiter,1) for line in stripped if line)
         else: 
             lines = (line.split(delimiter) for line in stripped if line)
@@ -33,18 +33,19 @@ def txtToCsv(file,delimiter,csvFile):
                 writer.writerow(('Title','Message'))
                 writer.writerows(lines)
             else: 
-                writer.writerow(('Title','NFR1','NFR2','NFR3'))
+                writer.writerow(('Title','NFR1','NFR2','NFR3','NFR4'))
                 writer.writerows(lines)
 
 
 if __name__ == "__main__":
+    #TESTING FILES 
+    inputf = 'input files/3.requirements-4nfr-100fr_Nov5.txt'
+    outputf = 'outputs/output_run3.txt'
+    
     #set variables
     reqsCSV = 'input.csv'
     traceCSV = 'output.csv'
-    #TESTING FILES 
-    inputf = 'input.txt'
-    outputf = 'output.txt'
-
+    
     #Convert input file
     # inputf = input("Enter the input file: ")
     txtToCsv(inputf,':',reqsCSV)
@@ -65,11 +66,7 @@ if __name__ == "__main__":
     # df.info()
     df.head()
 
-    y = df[['NFR1', 'NFR2', 'NFR3']]
-    # vectorizer = CountVectorizer()
-    # text = df['Message']
-    # vectorizer.fit(text)
-    # print(vectorizer.vocabulary_)
+    y = df[['NFR1', 'NFR2', 'NFR3','NFR4']]
     words = df['Message']
     max_length = max([len(s.split())for s in words])
 
@@ -96,7 +93,7 @@ if __name__ == "__main__":
     model.add(Embedding(max_words, 50, input_length=x.shape[1])) #input
     model.add(LSTM(40, activation="sigmoid", dropout=0.1, recurrent_dropout=0.1))                  #hidden
     model.add(Dense(20, activation='relu'))   
-    model.add(Dense(3, activation='softmax'))                    #output
+    model.add(Dense(4, activation='softmax'))                    #output
     model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
     #loss='cosine_proximity' - gives good recall
     print(model.summary())
@@ -124,7 +121,9 @@ if __name__ == "__main__":
     y_pred = np.around(y_pred)
     y_pred = y_pred.astype(int)
 
-    with open('result.txt','w') as result:
-        for x in range(80):
-            result.write("FR{},{},{},{}\n".format(x+1,int(y_pred[x][0]),y_pred[x][1],y_pred[x][2]))
-
+    with open('result.txt','w') as file:
+        for x in range(len(y_pred)):
+            if len(y_pred[x]) == 3:
+                file.write("FR{},{},{},{}\n".format(x+1,y_pred[x][0],y_pred[x][1],y_pred[x][2]))
+            else:
+                file.write("FR{},{},{},{},{}\n".format(x+1,y_pred[x][0],y_pred[x][1],y_pred[x][2],y_pred[x][3]))

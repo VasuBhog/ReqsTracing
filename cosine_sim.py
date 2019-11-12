@@ -17,8 +17,16 @@ from nltk.corpus import stopwords
 
 if __name__ == "__main__":
     #TESTING FILES 
-    inputf = 'input.txt'
-    outputf = 'output.txt'
+    #run1 - 3 NFR and 80 FR
+    # inputf = 'input files/1.requirements-3nfr-80fr.txt'
+
+    #run2 - 3 NFR and 100 FR
+    # inputf = 'input files/2.requirements-3nfr-100fr_Nov7.txt'
+
+    #run3 - 4 NFR and 100 FR
+    inputf = 'input files/3.requirements-4nfr-100fr_Nov7.txt'
+
+    #Initialize
     NFR = []
     FR = []
     count = 0
@@ -52,6 +60,7 @@ if __name__ == "__main__":
             
             # form a set containing keywords of both strings  
             rvector = x_list.union(y_list)  
+            # print(rvector)
             for w in rvector: 
                 if w in x_list: l1.append(1) # create a vector 
                 else: l1.append(0) 
@@ -59,21 +68,30 @@ if __name__ == "__main__":
                 else: l2.append(0) 
             c = 0
             # print(rvector)
+            # print(x_list)
+            # print(l1)
 
             # cosine formula  
             for i in range(len(rvector)): 
                     c+= l1[i]*l2[i] 
             cosine = c / float((sum(l1)*sum(l2))**0.5)
 
-            if cosine >= .225:
+            if cosine >= .20:
                 FRxNFRs.append(1)
                 count = count + 1
             else:
                 FRxNFRs.append(0)
+
         result.append(FRxNFRs)
         # print(result)
     print(count)
-    with open('result.txt','w') as file:
+
+    #Change Run Numbers 
+    with open('VasuBhogRun3.txt','w') as file:
         for x in range(len(result)):
-            file.write("FR{},{},{},{}\n".format(x+1,result[x][0],result[x][1],result[x][2]))
+            if len(result[x]) == 3:
+                file.write("FR{},{},{},{}\n".format(x+1,result[x][0],result[x][1],result[x][2]))
+            else:
+                file.write("FR{},{},{},{},{}\n".format(x+1,result[x][0],result[x][1],result[x][2],result[x][3]))
+
 

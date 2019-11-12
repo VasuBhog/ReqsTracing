@@ -2,9 +2,9 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - Metrics2",
+            "name": "CodeLens (Launch) - Metrics",
             "request": "launch",
-            "mainClass": "Metrics2"
+            "mainClass": "evaluation.basic.Metrics"
         },
         {
             "type": "java",
@@ -14,9 +14,9 @@
         },
         {
             "type": "java",
-            "name": "CodeLens (Launch) - Metrics",
+            "name": "CodeLens (Launch) - Metrics2",
             "request": "launch",
-            "mainClass": "evaluation.basic.Metrics"
+            "mainClass": "Metrics2"
         }
     ]
 }

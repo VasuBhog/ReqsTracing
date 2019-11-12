@@ -16,17 +16,17 @@ public class Metrics {
 	
 	public static void main(String[] args){
 		//Please change this path to the path of student's outputs
-		String tool_outputs_path = "result.txt";
+		String tool_outputs_path = "VasuBhogRun3.txt";
 				
 		//Please change this path to the path of your local answer set file
-		String answer_set_path = "output.txt";
+		String answer_set_path = "outputs/output_run3.txt";
 		
 		Map<String,Integer[]> answer_set=read(answer_set_path);
 		Map<String,Integer[]> tool_outputs=read(tool_outputs_path);
 		double recall_average=0.0;
 		double precision_average=0.0;
 		double f2_average=0.0;
-		for(int i=0;i<3;i++) {
+		for(int i=0;i<4;i++) {
 			int tp=0;
 			int answer_size=0;
 			int result_size=0;
@@ -52,12 +52,12 @@ public class Metrics {
 			precision_average+=precision;
 			double f2 = (4*precision+recall)==0.0? 0.0:5*(precision*recall)/(4*precision+recall);
 			int order=i+1;
-			System.out.println("\nNFR"+order+": recall: "+recall+"; precision: "+precision+"; f2: "+f2);
+			System.out.println("NFR"+order+": recall: "+recall+"; precision: "+precision+"; f2: "+f2);
 		}
-		recall_average=recall_average/(double)3;
-		precision_average=precision_average/(double)3;
+		recall_average=recall_average/(double)4;
+		precision_average=precision_average/(double)4;
 		f2_average= (4*precision_average+recall_average)==0.0? 0.0:5*(precision_average*recall_average)/(4*precision_average+recall_average);
-		System.out.println("\nOverall performance: recall: "+recall_average+"; precision: "+precision_average+"; f2: "+f2_average);
+		System.out.println("Overall performance: recall: "+recall_average+"; precision: "+precision_average+"; f2: "+f2_average);
 	}
 	
 	public static int getOrder(String strFR) {
@@ -81,13 +81,14 @@ public class Metrics {
 			while ((line = bufferedReader.readLine()) != null) {
 				String p=line.trim();
 				String[] trace= p.split(",");
-				if(trace.length==4){
-					if(isFRNumber(trace[0])&&isNumber(trace[1])&&isNumber(trace[2])&&isNumber(trace[3])) {
+				if(trace.length==5){
+					if(isFRNumber(trace[0])&&isNumber(trace[1])&&isNumber(trace[2])&&isNumber(trace[3])&&isNumber(trace[4])) {
 						if(!matrix.containsKey(trace[0].toLowerCase())) {
-							Integer[] links=new Integer[3];
+							Integer[] links=new Integer[4];
 							links[0]= getTrace(trace[1]);
 							links[1]= getTrace(trace[2]);
 							links[2]= getTrace(trace[3]);
+							links[3]= getTrace(trace[4]);
 							matrix.put(trace[0].toLowerCase(), links);
 						}
 					}
